@@ -78,13 +78,12 @@ The following demo shows the attentions weights that X-Pool assigns to the frame
 </div>
   
 <div class="center">
-  <p id="caption"> 
-    <span style="color: #ad4442"><strong>Text: </strong></span>a person is connecting something to system 
-  </p>
+  <p class="center2"><span style="color: #ad4442"><strong>Video</strong></span></p>
+  <p id="caption">a person is connecting something to system</p>
 </div>
 
 <div class="center">
-  <p class="center2"><span style="color: #ad4442"><strong>Video:</strong></span></p>
+  <p class="center2"><span style="color: #ad4442"><strong>Video</strong></span></p>
   <video id="vid" width="320" height="240" autoplay muted loop>
       <source src="https://msrvtt.s3.ca-central-1.amazonaws.com/videos/video9770.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -172,7 +171,7 @@ The following demo shows the attentions weights that X-Pool assigns to the frame
     // update caption
     var caption = document.getElementById('caption');
     var new_caption = msrvtt_json[num]['sentence'];
-    caption.innerHTML = '<span style="color: #ad4442"><strong>Text: </strong></span>' + new_caption;
+    caption.innerHTML = new_caption;
 
     // update chart
     // This is the speed in which the loop occurs
