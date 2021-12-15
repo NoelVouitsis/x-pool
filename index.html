@@ -1,10 +1,221 @@
 <!DOCTYPE html>
 <html>
   <head>
-  </head>
-  <body>
-    <video width="320" height="240" controls>
-    <source src="https://msrvtt.s3.ca-central-1.amazonaws.com/videos/video7020.mp4" type="video/mp4">
-</video>
-  </body>
-    </html>
+    <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    .img-container {
+      float: left;
+      width: 8%;
+      padding: 0.5%;
+    }
+
+    .bar-container {
+      float: left;
+      width: 100%;
+      padding-right: 4%;
+    }
+    
+    /* .clearfix::after {
+      content: "";
+      clear: both;
+      display: block;
+      margin: auto;
+    } */
+    .center {
+      margin-left: 1.5%;
+      margin-right: auto;
+      width: 100%;
+      padding: 10px;
+      text-align: center;
+      font-size: 24px;
+      font-family: "Times New Roman";
+    }
+    /* .center {
+      margin: auto;
+      width: 60%;
+      padding: 10px;
+    } */
+
+    </style>
+    </head>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<body style="background-color: rgb(64, 138, 167);">
+
+<p class=center style="font-size: 48px;">X-Pool: Cross-Modal Language-Video Attention for Text-Video Retrieval</p>
+
+<div class="center">
+  <button id="generate_button" name="Generate" value="Generate" onclick="random()" style="font-size: 24px; font-family: 'Times New Roman'">
+    Generate
+  </button>
+</div>
+
+<div class="center">
+  <video id="vid" width="320" height="240" autoplay muted loop>
+      <source src="https://msrvtt.s3.ca-central-1.amazonaws.com/videos/video9770.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+<div class="center">
+  <div class="img-container">
+    <img id="frame0" src="https://msrvtt.s3.ca-central-1.amazonaws.com/frames/video9770_frame_0.jpg" alt="" style="width:100%">
+  </div>
+  <div class="img-container">
+    <img id="frame1" src="https://msrvtt.s3.ca-central-1.amazonaws.com/frames/video9770_frame_1.jpg" alt="" style="width:100%">
+  </div>
+  <div class="img-container">
+    <img id="frame2" src="https://msrvtt.s3.ca-central-1.amazonaws.com/frames/video9770_frame_2.jpg" alt="" style="width:100%">
+  </div>
+  <div class="img-container">
+    <img id="frame3" src="https://msrvtt.s3.ca-central-1.amazonaws.com/frames/video9770_frame_3.jpg" alt="" style="width:100%">
+  </div>
+  <div class="img-container">
+    <img id="frame4" src="https://msrvtt.s3.ca-central-1.amazonaws.com/frames/video9770_frame_4.jpg" alt="" style="width:100%">
+  </div>
+  <div class="img-container">
+    <img id="frame5" src="https://msrvtt.s3.ca-central-1.amazonaws.com/frames/video9770_frame_5.jpg" alt="" style="width:100%">
+  </div>
+  <div class="img-container">
+    <img id="frame6" src="https://msrvtt.s3.ca-central-1.amazonaws.com/frames/video9770_frame_6.jpg" alt="" style="width:100%">
+  </div>
+  <div class="img-container">
+    <img id="frame7" src="https://msrvtt.s3.ca-central-1.amazonaws.com/frames/video9770_frame_7.jpg" alt="" style="width:100%">
+  </div>
+  <div class="img-container">
+    <img id="frame8" src="https://msrvtt.s3.ca-central-1.amazonaws.com/frames/video9770_frame_8.jpg" alt="" style="width:100%">
+  </div>
+  <div class="img-container">
+    <img id="frame9" src="https://msrvtt.s3.ca-central-1.amazonaws.com/frames/video9770_frame_9.jpg" alt="" style="width:100%">
+  </div>
+  <div class="img-container">
+    <img id="frame10" src="https://msrvtt.s3.ca-central-1.amazonaws.com/frames/video9770_frame_10.jpg" alt="" style="width:100%">
+  </div>
+  <div class="img-container">
+    <img id="frame11" src="https://msrvtt.s3.ca-central-1.amazonaws.com/frames/video9770_frame_11.jpg" alt="" style="width:100%">
+  </div>
+  
+</div>
+
+<div class="center">
+  <div class="bar-container">
+    <canvas id="canvas" height="15" width="100%"></canvas>
+  </div>
+</div>
+
+<br>
+
+<div class="center">
+  <p id="caption"> a person is connecting something to system </p>
+</div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="static/js/bootstrap.min.js"></script>
+  <script src="static/js/Chart.min.js"></script>
+
+<script type="text/javascript">
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+  }
+
+  function random()
+  {
+    var num = getRandomInt(0, 1000);
+
+    // get msrvtt json file
+    var request = new XMLHttpRequest();
+    request.open("GET", "static/msrvtt_jsfusion.json", false);
+    request.send(null)
+    var msrvtt_json = JSON.parse(request.responseText);
+
+    // update video
+    var video = document.getElementById('vid');
+    var new_vid = msrvtt_json[num]['video_id'];
+    video.setAttribute("src", "https://msrvtt.s3.ca-central-1.amazonaws.com/videos/" + new_vid + ".mp4");
+
+    // update frames
+    for (let i = 0; i < 12; i++) {
+      var frame = document.getElementById('frame' + i);
+      frame.setAttribute("src", "https://msrvtt.s3.ca-central-1.amazonaws.com/frames/" + new_vid + "_frame_" + i + ".jpg");
+    }
+
+    // update caption
+    var caption = document.getElementById('caption');
+    var new_caption = msrvtt_json[num]['sentence'];
+    caption.innerHTML = new_caption;
+
+    // update chart
+    // This is the speed in which the loop occurs
+    loopSpeed = 5000
+
+    // Every loopSpeed milliseconds, get API data (randomized with Python)
+    // Then draw a bar graph with the data.
+
+    var weight_request = new XMLHttpRequest();
+    weight_request.open("GET", "static/attn_weights.json", false);
+    weight_request.send(null)
+    var attn_weights = JSON.parse(weight_request.responseText);
+
+    drawChart(attn_weights[num])
+
+    function drawChart(set) {
+
+      var data = {
+          labels: ["frame 1", "frame 2", "frame 3", "frame 4", "frame 5", "frame 6", "frame 7", "frame 8", "frame 9", "frame 10", "frame 11", "frame 12"],
+          datasets: [
+              {
+                  label: "",
+                  backgroundColor: "rgba(154, 255, 167, 1)",
+                  data: set
+              }
+          ]
+      };
+
+      var ctx = document.getElementById("canvas").getContext("2d");
+      
+      // return new Chart(ctx).Bar(data, {
+      //       responsive : true
+      //   });
+
+      return new Chart(ctx, {
+        type: "bar",
+        data: data,
+        options: {
+          events: [],
+          legend: {display: false},
+          scales: {
+            xAxes: [{
+                barPercentage: 0.4,
+                display: false,
+                gridLines: {
+                    color: "rgba(0, 0, 0, 0)",
+                    drawBorder: false
+                }
+            }],
+            yAxes: [{
+                display: false,
+                gridLines: {
+                    color: "rgba(0, 0, 0, 0)",
+                    drawBorder: false
+                },
+                ticks: {
+                    display: false
+                }
+            }]
+          }
+        }
+      });
+
+      }
+
+  }
+</script>
+
+</body>
+
+</html>
