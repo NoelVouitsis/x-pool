@@ -5,29 +5,6 @@
     * {
       box-sizing: border-box;
     }
-    .pair-container{
-      display: flex;
-      align-items: center;
-      justify-content: center
-    }
-    
-    video {
-      max-width: 100%
-    }
-    
-    .video {
-      /* flex-basis: 50%; */
-      width: 50%;
-      
-    }
-    
-    .text {
-      font-size: 24px;
-      text-align: center;
-      /*padding-right: 10%;*/
-      width: 50%;
-    }
-    
     .img-container {
       float: left;
       width: 8%;
@@ -100,23 +77,16 @@ The following demo shows the attentions weights that X-Pool assigns to the frame
   </button>
 </div>
   
-<!-- <div>
-  <p class="center2"><span style="color: #ad4442"><strong>Text</strong></span></p>
-  <p class="center" id="caption">a person is connecting something to system</p>
-</div> -->
+<div>
+  <p class="center" id="caption"><span style="color: #ad4442"><strong>Text</strong></span><br>a person is connecting something to system</p>
+</div>
 
 <div class="center">
-  <div class="pair-container">
-    <div class="text">
-      <p id="caption">a person is connecting something to system</p>
-    </div>
-    <div class="video">
-       <video id="vid" width="320" height="240" autoplay muted loop>
-          <source src="https://msrvtt.s3.ca-central-1.amazonaws.com/videos/video9770.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-       </video>
-    </div>
-  </div>
+  <p><span style="color: #ad4442"><strong>Video</strong></span></p>
+  <video id="vid" width="320" height="240" autoplay muted loop>
+    <source src="https://msrvtt.s3.ca-central-1.amazonaws.com/videos/video9770.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+  </video>
 </div>
 
 <div class="center">
