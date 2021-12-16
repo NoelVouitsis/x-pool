@@ -35,11 +35,23 @@
       font-size: 24px;
       font-family: "Times New Roman";
     }
-    .center2 {
+    .video1 {
       margin-left: 1.5%;
       margin-right: auto;
       width: 100%;
       padding-left: 5%;
+      padding-top: 10px;
+      padding-right: 5%;
+      text-align: center;
+      font-size: 24px;
+      font-family: "Times New Roman";
+    }
+    .video2 {
+      margin-left: 1.5%;
+      margin-right: auto;
+      width: 100%;
+      padding-left: 5%;
+      padding-bottom: 10px;
       padding-right: 5%;
       text-align: center;
       font-size: 24px;
@@ -77,12 +89,14 @@ The following demo shows the attentions weights that X-Pool assigns to the frame
   </button>
 </div>
   
-<div>
-  <p class="center" id="caption"><span style="color: #ad4442"><strong>Text</strong></span><br>a person is connecting something to system</p>
+<div class="center">
+  <p id="caption"><span style="color: #ad4442"><strong>Text</strong></span><br>a person is connecting something to system</p>
 </div>
 
-<div class="center">
+<div class="video1">
   <p><span style="color: #ad4442"><strong>Video</strong></span></p>
+</div>
+<div class="video2">
   <video id="vid" width="320" height="240" autoplay muted loop>
     <source src="https://msrvtt.s3.ca-central-1.amazonaws.com/videos/video9770.mp4" type="video/mp4">
   Your browser does not support the video tag.
