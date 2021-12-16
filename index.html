@@ -147,7 +147,11 @@ The following demo shows the attentions weights that X-Pool assigns to the frame
 
   function random()
   {
+    let skip_videos = [696, 519, 414]
     var num = getRandomInt(0, 1000);
+    while (skip_videos.includes(num)) {
+      num = getRandomInt(0, 1000);
+    };
 
     // get msrvtt json file
     var request = new XMLHttpRequest();
